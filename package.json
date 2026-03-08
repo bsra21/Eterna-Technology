@@ -7,11 +7,28 @@
         "dev": "vite"
     },
     "devDependencies": {
-        "@tailwindcss/vite": "^4.0.0",
-        "axios": "^1.11.0",
+        "@vitejs/plugin-vue": "^6.0.4",
+        "axios": "^1.13.6",
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^2.0.0",
-        "tailwindcss": "^4.0.0",
         "vite": "^7.0.7"
-    }
+    },
+    "dependencies": {
+        "@tailwindcss/vite": "^4.2.1",
+        "postman-to-openapi": "^1.7.3",
+        "redoc-cli": "^0.13.21",
+        "tailwindcss": "^4.2.1",
+        "vue": "^3.5.29",
+        "vue-router": "^5.0.3"
+    },
+    "name": "blog-eterna",
+    "version": "1.0.0",
+    "description": "Blog Eterna is a fullstack blog management system developed using **Laravel 12**, **Sanctum API authentication**, and **Vue 3 Composition API**.",
+    "main": "tailwind.config.js",
+    "directories": {
+        "test": "tests"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }

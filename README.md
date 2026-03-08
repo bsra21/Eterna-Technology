@@ -1,59 +1,200 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Blog Eterna – Laravel 12 & Vue 3 Fullstack Blog System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📌 Project Description
 
-## About Laravel
+Blog Eterna is a fullstack blog management system developed using **Laravel 12**, **Sanctum API authentication**, and **Vue 3 Composition API**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The system is designed with **policy-based authorization**, **role middleware security**, and **scalable architecture suitable for real-world production environments**.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The frontend is connected directly to the API without using Inertia.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🚀 Technologies Used
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Backend
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Laravel 12
+- Laravel Sanctum (API Authentication)
+- Policy-based Authorization
+- Soft Delete Architecture
+- Scheduler Job System
+- Spatie Media Library (Image Upload)
+- Activity Log Integration (Prepared architecture)
+- Notification Foundation Structure
 
-## Laravel Sponsors
+### Frontend
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Vue 3 Composition API
+- TailwindCSS
+- Axios Interceptors
+- Vue Router
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 👤 User Roles
 
-## Contributing
+System supports three user roles:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Admin
+- Editor (Writer)
+- User (Reader)
 
-## Code of Conduct
+Authorization is handled using middleware and policy layers.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 🔐 Authentication Features
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- User registration with:
+    - First name
+    - Last name
+    - Phone number (masked input supported)
+    - Email
+    - Password
 
-## License
+- Login via email or phone.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- JWT-style token authentication using Laravel Sanctum.
+
+---
+
+## 📝 Blog Post Features
+
+- Editor can create and manage own posts.
+- Admin has full system access.
+
+Post model includes:
+
+- Title
+- Content
+- Slug (auto generated)
+- Cover image upload
+- Publication status (draft / published)
+- Published date
+- View counter
+- Reaction counter
+- Smart scoring system
+
+### ⭐ Featured Post Algorithm
+
+Featured posts are calculated automatically using scoring logic based on:
+
+- Comment activity in last 24 hours
+- Comment activity in last 7 days
+- Total comment count
+- Publication age coefficient
+
+Only published and non-soft-deleted posts are included.
+
+Top 5 scoring posts are exposed via dedicated API endpoint.
+
+---
+
+## 💬 Comment System
+
+- All authenticated users can comment.
+- Admin comments are automatically approved.
+- Comment moderation available for admin.
+- Comment approval triggers notification foundation logic.
+
+---
+
+## 🗂 Category Management
+
+- Admin can create, update, and delete categories.
+- Posts can belong to multiple categories.
+
+---
+
+## 📊 Scheduler Automation
+
+System includes scheduled background job:
+
+- Automatically deletes published posts that have not received comments for 7 days.
+
+Scheduler is prepared using Laravel scheduler configuration.
+
+---
+
+## 📁 Media Upload System
+
+Image uploads are handled using:
+
+- Spatie Laravel Media Library
+
+Uploaded images are stored in:
+
+```
+storage/app/public
+```
+
+---
+
+## 🔒 Security Architecture
+
+- Sanctum token authentication
+- Role-based middleware
+- Policy-based resource authorization
+- Query-level data filtering
+
+---
+
+## 🛠 Installation
+
+```bash
+composer install
+npm install
+php artisan migrate --seed
+php artisan storage:link
+php artisan serve
+npm run dev
+```
+
+---
+
+## 📌 API Testing
+
+Postman collection should be used for testing endpoints.
+
+Main endpoints:
+
+```
+/api/register
+/api/login
+/api/posts
+/api/categories
+/api/comments
+/api/users
+/api/posts/featured
+```
+
+---
+
+## ⚠️ Requirements Coverage
+
+✅ Full CRUD blog management
+✅ Role-based authorization
+✅ Featured post scoring system
+✅ Soft delete support
+✅ Scheduler automation
+✅ Media upload system
+✅ Notification architecture preparation
+
+---
+
+## 👨‍💻 Author
+
+Developed as a fullstack demonstration project using Laravel and Vue 3.
+
+## API Documentation
+
+You can view the API documentation here:
+
+/docs/api-doc.html
+
+## Postman Collection
+
+Postman collection for testing endpoints:
+
+/docs/Eterna.postman_collection.json
